@@ -18,7 +18,7 @@ import matplotlib.pyplot as plt
 #import allantools as allan
 import math
 from numpy import*
-
+from plotFunction import*
 
 datafiles=glob.glob('*.txt')
 
@@ -26,5 +26,11 @@ datafiles=glob.glob('*.txt')
 set1= open(datafiles[0], 'r')
 data_set1=loadtxt(set1, delimiter=',')
 
-# visualize data
+X=data_set1[:,0:2]
+y=data_set1[:,2]
 
+# visualize data
+plt.figure('Data Visualization',figsize=(12,9))
+plt.clf()
+
+plotData(X,y)#defined in the module plotFunction
