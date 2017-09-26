@@ -24,9 +24,10 @@ def plotData(X,y):
     
     plt.xlabel('Exam Score 1')
     plt.ylabel('Exam Score 2')
-    #plt.legend(loc='best')
-    plt.plot(X1_plus,X2_plus,'b+',markersize=10)
-    plt.plot(X1_cross,X2_cross,'kx',markersize=10)
+    
+    plt.plot(X1_plus,X2_plus,'b+',markersize=10,label='Accepted')
+    plt.plot(X1_cross,X2_cross,'kx',markersize=10,label='Rejected')
+    plt.legend(loc='best')
     return plt.show()
     
    
