@@ -34,3 +34,6 @@ plt.figure('Data Visualization',figsize=(12,9))
 plt.clf()
 
 plotData(X,y)#defined in the module plotFunction
+
+#adding the intercept to the X data
+

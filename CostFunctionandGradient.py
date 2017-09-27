@@ -5,7 +5,15 @@ Created on Tue Sep 26 13:14:49 2017
 
 @author: atlas
 """
-
-def costandGradient(X,y):
+def sigmoid(z):
+    
+    return 1/(1+exp(-z))
+    
+    
+def costandGradient(X,y,theta,lregularize):
+    
+    m=len(y)
+    
+    J=
     
     
