@@ -13,7 +13,7 @@ def sigmoid(z):
 def costandGradient(X,y,theta,lregularize):
     
     m=len(y)
-    
-    J=
+    z=X.theta
+    J=sum
     
     
