@@ -37,8 +37,12 @@ plotData(X,y)#defined in the module plotFunction
 
 #adding the intercept to the X data
 
-m,n=X.shape
+
 
 intercept=ones((m,1))
 
 X_new=hstack((intercept, X))
+m,n=X_new.shape
+#initialize theta
+
+theta_init=zeros((n,1))
