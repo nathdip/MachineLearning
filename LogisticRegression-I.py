@@ -59,4 +59,10 @@ gradient_test=gradient(test_theta, X_new, y)
 #Optimization using fmin_bfgs
 
 #theta,cost= opt.fmin_ncg(cost,x0=theta_init,fprime=gradient,args=(X_new,y),maxiter=None)
-theta=opt.minimize(fun=cost, x0 = theta_init, args = (X_new,y),method = 'BFGS',jac = gradient,options={'display':True,'maxiter':400});
+result=opt.minimize(fun=cost, x0 = theta_init, args = (X_new,y),method = 'BFGS',jac = gradient,options={'disp':True,'maxiter':400});
+
+theta=result.x
+print('The optimized theta without regularization is: ', theta)
+theta=theta.reshape((n,1))
+predict=array([[1],[45],[85]])
+print('For a student with marks 45 and 85 we predict a acceptance probability of ',ndarray.flatten(sigmoid(dot(matrix.transpose(theta),predict))))
