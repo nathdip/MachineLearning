@@ -8,16 +8,34 @@ Created on Tue Sep 26 13:14:49 2017
 
 from numpy import*
 
-def sigmoid(z):
+def sigmoid(x):
     
-    return 1/(1+exp(-z))
+    return 1/(1+exp(-x))
     
     
-def costandGradient(X,y,theta,lregularize):
+def cost(theta,X,y):
     
-    y=matrix.transpose(array([y]))
-    m=len(y)
+    
+    m,n=X.shape
+    y = y.reshape((m,1))
+    theta=theta.reshape((n,1))
     z=dot(X,theta)
-    cost=-y*sigmoid(z)-(1-y)
+    h=sigmoid(z)
+    cost=-y*log(h)-(1-y)*log(1-h)
+    
+    J=sum(cost)/m
     
     
+    return J;
+
+def gradient(theta,X,y):
+    
+    m,n=X.shape
+    y = y.reshape((m,1))
+    theta=theta.reshape((n,1))
+
+    z=dot(X,theta)
+    h=sigmoid(z)
+    
+    grad=dot(matrix.transpose(X),(h-y))/m
+    return ndarray.flatten(grad)

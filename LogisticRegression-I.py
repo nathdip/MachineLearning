@@ -19,6 +19,7 @@ import matplotlib.pyplot as plt
 import math
 from numpy import*
 from plotFunction import*
+from CostFunctionandGradient import*
 
 datafiles=glob.glob('*.txt')
 
@@ -39,10 +40,23 @@ plotData(X,y)#defined in the module plotFunction
 
 
 
-intercept=ones((m,1))
+intercept=ones((len(y),1))
 
 X_new=hstack((intercept, X))
 m,n=X_new.shape
+
 #initialize theta
 
 theta_init=zeros((n,1))
+
+test_theta = array([[-24],[0.2],[0.2]])
+
+cost_test=cost(test_theta, X_new, y)
+gradient_test=gradient(test_theta, X_new, y)
+
+#print('The cost is : ', cost_test,'the gradient is: ',gradient_test)
+
+#Optimization using fmin_bfgs
+
+#theta,cost= opt.fmin_ncg(cost,x0=theta_init,fprime=gradient,args=(X_new,y),maxiter=None)
+theta=opt.minimize(fun=cost, x0 = theta_init, args = (X_new,y),method = 'BFGS',jac = gradient,options={'display':True,'maxiter':400});
