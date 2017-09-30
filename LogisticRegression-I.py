@@ -20,6 +20,7 @@ import math
 from numpy import*
 from plotFunction import*
 from CostFunctionandGradient import*
+from sklearn.linear_model import LogisticRegression
 
 datafiles=glob.glob('*.txt')
 
@@ -66,3 +67,4 @@ print('The optimized theta without regularization is: ', theta)
 theta=theta.reshape((n,1))
 predict=array([[1],[45],[85]])
 print('For a student with marks 45 and 85 we predict a acceptance probability of ',ndarray.flatten(sigmoid(dot(matrix.transpose(theta),predict))))
+
