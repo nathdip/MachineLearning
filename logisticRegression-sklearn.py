@@ -47,7 +47,7 @@ X_transformed=poly.fit_transform(X_2)
 
 
 model1=LogisticRegression(C=4)
-model1=model.fit(X_1,y_1)
+model1=model1.fit(X_1,y_1)
 print(model1.score(X_1,y_1))
 
 model2=LogisticRegression(C=10)
