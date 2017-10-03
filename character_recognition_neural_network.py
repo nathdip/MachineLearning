@@ -1,10 +1,10 @@
-#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Sat Sep 30 14:55:24 2017
+Created on Mon Oct  2 21:15:32 2017
 
 @author: nath
 """
+
 import glob,os
 import glob,os
 import time
@@ -21,39 +21,32 @@ from numpy import*
 from plotFunction import*
 from sklearn.linear_model import LogisticRegression
 from sklearn.preprocessing import PolynomialFeatures
+from sklearn.neural_network import MLPClassifier
 import scipy.io as scipo
 from  skimage import*
 from time import sleep
 datafiles=glob.glob('*.mat')
 
 set_1=scipo.loadmat(datafiles[0])
-set_2=scipo.loadmat(datafiles[1])
 
 keys_set_1=[]
 for key in set_1:
     keys_set_1.append(key)
     
 X=set_1[keys_set_1[3]]
-y=ndarray.flatten(set_1[keys_set_1[1]])
+y=ndarray.flatten(set_1[keys_set_1[2]])
 
-no_images_display=25
-X_display=X[0:no_images_display]
-
-temp=reshape(X_display[1],(20,20))
-plt.figure('Example')
-plt.imshow(temp,cmap='gray')
-
-image_classifier=LogisticRegression(C=100)
+image_classifier=MLPClassifier(hidden_layer_sizes=(10,25 ),activation='logistic',solver='lbfgs',alpha=1)
 image_classifier=image_classifier.fit(X,y)
-print('The accuracy is:',image_classifier.score(X,y))
-
-for i in range(400,600):
+print(image_classifier.score(X,y))
+n_rand=random.randint(0,4999,50)
+for i in n_rand:
     plt.figure()
     plt.clf()
     X_new=X[i:i+1]
     temp=reshape(X_new,(20,20))
+    image_label=image_classifier.predict(X_new)
     plt.imshow(temp,cmap="gray")
+    plt.text(2.5,2.5,str(image_label),color='red')
     plt.show()
     print(image_classifier.predict(X_new))
-    
-
